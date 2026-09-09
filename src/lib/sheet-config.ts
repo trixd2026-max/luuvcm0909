@@ -29,7 +29,7 @@ const REPORT_WEBHOOK =
 const empty: SheetConfig = {
   sheetId: PRODUCT_SHEET_ID,
   csvUrl: "",
-  gid: "0",
+  gid: "1069887904",
   sheetName: "san-pham-vuon-cua-mit",
   webhookUrl: REPORT_WEBHOOK,
   ordersSheetName: "DonHang",
