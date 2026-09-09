@@ -19,17 +19,17 @@ export type SheetConfig = {
   reportWebhookUrl: string;
 };
 
-/** Sheet sản phẩm + tab DonHang (đơn thật đang ghi vào đây) */
-const PRODUCT_SHEET_ID = "1PIwNQOmYupdqww3_Y5i1a4sPYpmHs2LNZlWIUlPsb5U";
-/** Sheet báo cáo riêng — chỉ dùng để GHI tổng hợp, không đọc đơn từ đây */
-const REPORT_SHEET_ID = "16nGPqH-8BesOPKqvyrZLsl07QZX_Ugpa0bIuKWyJcdU";
+/** Sheet sản phẩm + tab DonHang — bản lưu độc lập (09/09/2026) */
+const PRODUCT_SHEET_ID = "1aGIUXvT6ar5Qz98v4WZQDXJeY-O47ZEfttRa4uBb1sg";
+/** Sheet báo cáo riêng — bản lưu độc lập */
+const REPORT_SHEET_ID = "16l7cPxO1Hia8BqxWORv_1eD_djo1BpKyMlWMAv35A5Q";
 const REPORT_WEBHOOK =
-  "https://script.google.com/macros/s/AKfycbxumqdKdq1meRnUgzSrrW9Q2cyTQisJJn77AbDtpL18_eXuN3tWINvSZg6kprLqLZQ/exec";
+  "https://script.google.com/macros/s/AKfycbz7NwM3e7-hl7C_EDxi1pYx_ILvCfwcBFwHhK9avLve-aPgilA7sJAKaCYmEdt1VCvi/exec";
 
 const empty: SheetConfig = {
   sheetId: PRODUCT_SHEET_ID,
   csvUrl: "",
-  gid: "1069887904",
+  gid: "0",
   sheetName: "san-pham-vuon-cua-mit",
   webhookUrl: REPORT_WEBHOOK,
   ordersSheetName: "DonHang",
