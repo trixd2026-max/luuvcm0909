@@ -1,105 +1,72 @@
-# Vườn Của Mít
+# luuvcm0909 — Bản lưu Vườn Của Mít (09/09/2026)
 
-Website bán trái cây vườn, giỏ quà, tráp cưới hỏi và hoa viếng tang của **Chị Hằng** — Xóm 1B, Thôn Phụng Sơn, xã Tuy Phước Đông, tỉnh Gia Lai.
+Đây là **bản sao lưu đầy đủ** của repository gốc [vuoncuamit](https://github.com/trixd2026-max/vuoncuamit).
 
-**Live:** [https://vuoncuamit.vercel.app](https://vuoncuamit.vercel.app)
+| Mục | Link |
+|-----|------|
+| **Repo gốc** | https://github.com/trixd2026-max/vuoncuamit |
+| **Web app live** | https://vuoncuamit.vercel.app |
+| **Vercel gốc** | https://vercel.com/trixd2026-9658s-projects/vuoncuamit |
+| **Repo bản lưu này** | https://github.com/trixd2026-max/luuvcm0909 |
 
-## Tính năng chính
+Commit hiện tại trùng với `main` của repo gốc (SHA `3555415`).
 
-- **Cửa hàng** — danh mục sản phẩm (trái cây theo mùa, giỏ quà, tráp cưới, hoa viếng)
-- **Đặt giỏ trái cây** — chọn mức giá theo dịp (kính cúng, biếu tặng, sinh nhật, …)
-- **Tráp cưới hỏi** — set 5 / 7 / 9 tráp
-- **Giỏ hàng + thanh toán** — form đặt hàng, chọn ngày/giờ giao hoặc tự đến lấy
-- **Tra cứu đơn** — khách nhập SĐT để xem trạng thái đơn
-- **Quản lý đơn hàng (`/quan-ly`)** — trang admin bảo vệ bằng PIN:
-  - Đồng bộ sản phẩm & tồn kho từ Google Sheet
-  - Xem / lọc đơn gần đây (ngày, trạng thái, SĐT)
-  - Cập nhật trạng thái đơn & ghi chú nội bộ
-  - In phiếu giao
-  - Cấu hình webhook Apps Script, tải CSV mẫu
-- Liên hệ nhanh Zalo / Facebook Messenger / gọi điện
+---
+
+## Deploy bản lưu lên Vercel (1–2 phút)
+
+1. Mở [Vercel Dashboard](https://vercel.com/dashboard) → **Add New… → Project**
+2. Import repository **`trixd2026-max/luuvcm0909`**
+3. **Project Name**: `luuvcm0909`
+4. Framework Preset: để Vercel tự detect (Vite / TanStack Start)
+5. Build Command: `npm run build`
+6. Nhấn **Deploy**
+
+Sau khi xong bạn sẽ có:
+`https://luuvcm0909.vercel.app`
+
+### Biến môi trường
+
+App **không bắt buộc** `.env` để chạy cơ bản. Cấu hình Google Sheet + webhook Apps Script được lưu trên trình duyệt qua trang `/quan-ly`.
+
+---
+
+## Tính năng chính (giống bản gốc)
+
+- Cửa hàng, đặt giỏ trái cây, tráp cưới hỏi, hoa viếng
+- Giỏ hàng + thanh toán, tra cứu đơn
+- Trang quản lý `/quan-ly` (PIN mặc định: `662166`)
+- Đồng bộ sản phẩm & đơn hàng qua Google Sheet + Apps Script
 
 ## Công nghệ
 
-| Thành phần | Công nghệ |
-|---|---|
-| Frontend | React 19, TanStack Router / Start, Tailwind CSS 4 |
-| UI | Radix UI, Lucide icons, Sonner toast |
-| State | Zustand (giỏ hàng), TanStack Query |
-| Dữ liệu sản phẩm | Google Sheet (CSV export) + fallback local |
-| Đơn hàng | Google Sheet qua Apps Script webhook |
-| Auth admin | PIN client-side (sessionStorage, 12h) |
-| Deploy | Vercel |
-
-## Cấu trúc thư mục quan trọng
-
-```
-src/
-  routes/           # Các trang (file-based routing)
-    index.tsx       # Trang chủ
-    cua-hang.tsx
-    gio-trai-cay.tsx
-    trap-cuoi-hoi.tsx
-    gio-hang.tsx / thanh-toan.tsx / dat-xong.tsx
-    tra-cuu-don.tsx
-    quan-ly.tsx     # Admin — bắt buộc nhập PIN
-  components/
-    layout/         # Header, footer, mobile tabbar, shell
-  lib/
-    shop.ts         # Thông tin shop, mức giá, slot giao hàng
-    catalog.ts      # Sản phẩm local + parse CSV
-    sheet.ts        # Fetch catalog & order helpers
-    admin-gate.ts   # PIN / session admin
-    orders.ts       # Kiểu đơn, trạng thái, format
-    cart.ts         # Giỏ hàng (Zustand + localStorage)
-public/
-  apps-script.gs    # Mã Apps Script mẫu để copy vào Google
-  products/         # Ảnh sản phẩm
-```
+React 19 · TanStack Router/Start · Tailwind CSS 4 · Radix UI · Zustand · Google Sheet
 
 ## Chạy local
 
 ```bash
+git clone https://github.com/trixd2026-max/luuvcm0909.git
+cd luuvcm0909
 npm install
 npm run dev          # http://0.0.0.0:8080
 ```
 
-Các lệnh khác:
-
 ```bash
-npm run build        # Build production + migrate DB (nếu có)
+npm run build
 npm run typecheck
 npm run lint
 ```
 
-## Trang Quản lý (`/quan-ly`)
+## Cấu hình quan trọng
 
-- **PIN mặc định:** `662166` (6 số cuối SĐT shop). Nên đổi ngay sau lần đầu vào.
-- Session lưu trong `sessionStorage`, hết hạn sau 12 giờ.
-- Link **Quản lý đơn hàng** nằm trong footer (Mục lục), giữa “Tra cứu đơn” và “Facebook”.
-- Trang **luôn** hiện form nhập PIN nếu chưa mở khóa — không bypass được qua URL.
-
-### Kết nối Google Sheet
-
-1. Tạo Sheet với 2 tab: sản phẩm (mặc định `SanPham`) và đơn hàng (mặc định `DonHang`).
-2. Chia sẻ “Bất kỳ ai có liên kết” (viewer).
-3. Vào `/quan-ly` → nhập Sheet ID / CSV URL / tên tab / gid → **Lưu và đồng bộ**.
-4. Deploy Apps Script (copy từ trang quản lý hoặc `public/apps-script.gs`) để nhận đơn và trừ tồn kho.
-
-## Biến môi trường / cấu hình
-
-Cấu hình Sheet & webhook được lưu trên trình duyệt (localStorage) qua trang `/quan-ly`. Không cần file `.env` cho vận hành cơ bản.
+- **PIN admin** (`/quan-ly`): `662166` (nên đổi sau lần đầu)
+- Ảnh sản phẩm: `public/products/`
+- Apps Script mẫu: `public/apps-script.gs`
+- Cache header ảnh: đã có trong `vercel.json`
 
 ## Liên hệ shop
 
-- Zalo / Điện thoại: **0345 662 166** (Chị Hằng)
-- Điện thoại 2: 0942 223 984
-- Facebook: [profile](https://www.facebook.com/profile.php?id=61579721713679)
+- Zalo / ĐT: **0345 662 166** (Chị Hằng)
+- ĐT 2: 0942 223 984
+- Facebook: https://www.facebook.com/profile.php?id=61579721713679
 - Địa chỉ: Xóm 1B, Thôn Phụng Sơn, xã Tuy Phước Đông, tỉnh Gia Lai
-- Giờ mở cửa: 7:00 – 20:00 hàng ngày
-
-## Ghi chú phát triển
-
-- Ảnh sản phẩm ưu tiên đặt trong `public/products/`.
-- Khi sửa footer / header, kiểm tra cả desktop và mobile tabbar.
-- Admin gate là client-side — đủ cho shop nhỏ; nếu cần bảo mật cao hơn có thể nâng cấp sang Better Auth (đã có sẵn trong monorepo scaffold).
